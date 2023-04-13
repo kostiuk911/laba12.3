@@ -1,0 +1,30 @@
+#include <iostream>
+#include <list>
+
+using namespace std;
+
+bool checkElements(list<int> L1, list<int> L2) {
+    if (L1.empty()) {
+        return true;
+    }
+    int elem = L1.front();
+    L1.pop_front();
+    if (find(L2.begin(), L2.end(), elem) == L2.end()) {
+        return false;
+    }
+    return checkElements(L1, L2);
+}
+
+int main() {
+    list<int> L1 = { 1, 2, 3 };
+    list<int> L2 = { 3, 1, 2, 4 };
+
+    if (checkElements(L1, L2)) {
+        cout << "All elements of the L1 list are included in the L2 list" << endl;
+    }
+    else {
+        cout << "Not all elements of the L1 list are included in the L2 list" << endl;
+    }
+
+    return 0;
+}
