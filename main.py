@@ -1,16 +1,30 @@
-def check_list_elements_recursive(L1, L2):
-    if not L1:
-        return True
-    if L1[0] in L2:
-        return check_list_elements_recursive(L1[1:], L2)
-    return False
-L1 = [1, 2, 3]
-L2 = [3, 1, 2, 4, 5]
+#include <iostream>
+#include <vector>
+#include <algorithm>
 
-# перевірка чи всі елементи з L1 є в L2 за допомогою рекурсивної функції
-if check_list_elements_recursive(L1, L2):
-    print("Всі елементи зі списку L1 входять у список L2")
-else:
-    print("Не всі елементи зі списку L1 входять у список L2")
+using namespace std;
+
+bool checkElements(vector<int> L1, vector<int> L2) {
+    for (int i = 0; i < L1.size(); i++) {
+        if (find(L2.begin(), L2.end(), L1[i]) == L2.end()) {
+            return false;
+        }
+    }
+    return true;
+}
+
+int main() {
+    vector<int> L1 = { 1, 4, 3 };
+    vector<int> L2 = { 3, 1, 2, 4 };
+
+    if (checkElements(L1, L2)) {
+        cout << "All elements of the L1 list are included in the L2 list" << endl;
+    }
+    else {
+        cout << "Not all elements of the L1 list are included in the L2 list" << endl;
+    }
+
+    return 0;
+}
 
 
